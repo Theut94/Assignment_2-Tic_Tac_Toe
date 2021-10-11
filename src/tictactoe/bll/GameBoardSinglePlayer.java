@@ -1,12 +1,17 @@
 package tictactoe.bll;
 
+import tictactoe.gui.controller.TicTacViewController;
+
 /**
  * The GameBoardSinglePlayer class is the optional and advanced implementation for the TicTacToe assignment.
  * It is used for games where there are one human player vs. a computer player.
  */
 public class GameBoardSinglePlayer implements IGameModel {
 
-    protected GameBoardSinglePlayer() {
+    public int playerturn = 0;
+
+    protected GameBoardSinglePlayer()
+    {
 
     }
 
@@ -16,9 +21,20 @@ public class GameBoardSinglePlayer implements IGameModel {
      * @return int Id of the next player.
      */
     @Override
-    public int getNextPlayer() {
-        //TODO Implement this method
-        return 0;
+    public int getNextPlayer()
+    {
+        if (playerturn % 2 == 0)
+        {
+            playerturn = 1;
+            return 1;
+
+        }
+        else
+        {
+            playerturn = 2;
+            return 0;
+
+        }
     }
 
     /**
@@ -32,9 +48,11 @@ public class GameBoardSinglePlayer implements IGameModel {
      * true this method will always return false.
      */
     @Override
-    public boolean play(int col, int row) {
+    public boolean play(int col, int row)
+    {
+
         //TODO Implement this method
-        return false;
+        return true;
     }
 
     /**
@@ -44,7 +62,8 @@ public class GameBoardSinglePlayer implements IGameModel {
      * @return true if the game is over, else it will return false.
      */
     @Override
-    public boolean isGameOver() {
+    public boolean isGameOver()
+    {
         //TODO Implement this method
         return false;
     }
@@ -55,7 +74,8 @@ public class GameBoardSinglePlayer implements IGameModel {
      * @return int id of winner, or -1 if draw or if gameOver() == false.
      */
     @Override
-    public int getWinner() {
+    public int getWinner()
+    {
         //TODO Implement this method
         return 0;
     }
@@ -64,7 +84,8 @@ public class GameBoardSinglePlayer implements IGameModel {
      * Resets the game to a new game state.
      */
     @Override
-    public void newGame() {
+    public void newGame()
+    {
         //TODO Implement this method
     }
 
@@ -78,6 +99,6 @@ public class GameBoardSinglePlayer implements IGameModel {
     @Override
     public int getPlayerAt(int col, int row) {
         //TODO Implement this method
-        return -1;
+        return 1;
     }
 }

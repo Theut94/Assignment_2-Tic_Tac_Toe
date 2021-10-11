@@ -149,7 +149,9 @@ public class TicTacViewController implements Initializable {
         String message;
         if (winner == -1) {
             message = "It's a draw :-(";
-        } else {
+        }
+        else
+        {
             message = "Player " + winner + " wins!!!";
         }
         lblPlayer.setText(message);
@@ -158,7 +160,8 @@ public class TicTacViewController implements Initializable {
     /**
      * Clears the board so that all Buttons of the board do NOT display anything.
      */
-    private void clearBoard() {
+    private void clearBoard()
+    {
         for (Node n : gridPane.getChildren()) {
             Button btn = (Button) n;
             btn.setText("");

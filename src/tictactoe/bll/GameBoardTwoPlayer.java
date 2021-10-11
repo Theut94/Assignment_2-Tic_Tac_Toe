@@ -4,11 +4,16 @@ package tictactoe.bll;
  * The GameBoardTwoPlayer class is the mandatory implementation for the TicTacToe assignment.
  * It is used for games where there are two human players.
  */
-public class GameBoardTwoPlayer implements IGameModel {
+public class GameBoardTwoPlayer implements IGameModel
+{
 
-    protected GameBoardTwoPlayer() {
+    public int playerturn = 0;
+
+    protected GameBoardTwoPlayer()
+    {
 
     }
+
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -16,9 +21,10 @@ public class GameBoardTwoPlayer implements IGameModel {
      * @return int Id of the next player.
      */
     @Override
-    public int getNextPlayer() {
-        //TODO Implement this method
-        return 0;
+    public int getNextPlayer()
+    {
+        return playerturn % 2;
+
     }
 
     /**
@@ -34,6 +40,7 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean play(int col, int row) {
         //TODO Implement this method
+        playerturn++;
         return true;
     }
 
@@ -64,7 +71,8 @@ public class GameBoardTwoPlayer implements IGameModel {
      * Resets the game to a new game state.
      */
     @Override
-    public void newGame() {
+    public void newGame()
+    {
         //TODO Implement this method
     }
 
@@ -76,9 +84,34 @@ public class GameBoardTwoPlayer implements IGameModel {
      * @return Will return 0 if player 0 has played the field, 1 for player one, and -1 if no player has played the field.
      */
     @Override
-    public int getPlayerAt(int col, int row) {
-        //TODO Implement this method
+    public int getPlayerAt(int col, int row)
+    {
+        int[][] boardgame = new int[3][3];
+        boardgame[0][0] = -1;
+        boardgame[0][1] = -1;
+        boardgame[0][2] = -1;
+        boardgame[1][0] = -1;
+        boardgame[1][1] = -1;
+        boardgame[1][2] = -1;
+        boardgame[2][0] = -1;
+        boardgame[2][1] = -1;
+        boardgame[2][2] = -1;
+
+        // Her vil vi gerne kunne ændre værdierne inde i arrayet.. det er ikke gjort endnu,
+        // men vi har forsøgt at gøre forskel på om det er player et eller player to
+        for (int r = 0; r < boardgame.length; r++ ) {
+            for (int c = 0; c < boardgame[0].length; c++) {
+                if(playerturn == 0 )
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+
+        }
         return -1;
     }
-
 }
