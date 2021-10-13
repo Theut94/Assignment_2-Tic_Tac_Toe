@@ -84,7 +84,7 @@ public class GameBoardTwoPlayer implements IGameModel
         }
         else if(checkXWin())
         {
-            return checkOWin();
+            return checkXWin();
         }
 
         return isGameOver;

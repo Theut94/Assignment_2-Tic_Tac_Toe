@@ -22,7 +22,7 @@ public class ScoreModel {
             winners.add("Draw");
         }
         else{
-            winners.add("player" + winner + "won");
+            winners.add("player " + winner + " won");
         }
 
     }
