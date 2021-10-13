@@ -11,13 +11,13 @@ public class GameBoardTwoPlayer implements IGameModel
 
     private final String[][] grid;
 
-    private int turnsLeft;
+
 
     protected GameBoardTwoPlayer()
     {
         grid = new String[3][3];
         resetBoard();
-        turnsLeft = 9;
+
     }
 
 
@@ -40,6 +40,7 @@ public class GameBoardTwoPlayer implements IGameModel
                 grid[i][j] = "";
             }
         }
+
     }
 
     public void setGrid(int col, int row, String text){
@@ -59,6 +60,7 @@ public class GameBoardTwoPlayer implements IGameModel
     public boolean play(int col, int row) {
         return (!isGameOver() && grid[col][row].matches(""));
 
+
     }
 
     /**
@@ -69,11 +71,26 @@ public class GameBoardTwoPlayer implements IGameModel
      */
     @Override
     public boolean isGameOver() {
-        if (turnsLeft > 0) {
-            return checkXWin() || checkOWin();
+        boolean isGameOver = true;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                if (grid[i][j].equals("")) {
+                    isGameOver = false;
+                }
+            }
         }
-        return true;
+        if (checkOWin()) {
+            return checkOWin();
+        }
+        else if(checkXWin())
+        {
+            return checkOWin();
+        }
+
+        return isGameOver;
     }
+
+
 
     private boolean checkXWin() {
         return (grid[0][0].matches("[X]") && grid[1][0].matches("[X]") && grid[2][0].matches("[X]") ||
@@ -101,7 +118,9 @@ public class GameBoardTwoPlayer implements IGameModel
                 grid[0][2].matches("[O]") && grid[1][1].matches("[O]") && grid[2][0].matches("[O]"));
     }
 
-
+    /**
+     * This method is used to change player turn.
+     */
     public void incrementPlayer() {
         if (playerturn == 0) {
             playerturn++;
@@ -117,15 +136,19 @@ public class GameBoardTwoPlayer implements IGameModel
      */
     @Override
     public int getWinner() {
-        if (checkOWin()) {
-            return 1;
-        }
-        else if (checkXWin()) {
+        if(checkOWin())
+        {
             return 0;
         }
-        else {
+        else if (checkXWin())
+        {
+            return 1;
+        }
+        else
+        {
             return -1;
         }
+
     }
 
     /**
@@ -150,35 +173,3 @@ public class GameBoardTwoPlayer implements IGameModel
         return -1;
     }
 }
-        /*
-        int[][] boardgame = new int[3][3];
-        boardgame[0][0] = -1;
-        boardgame[0][1] = -1;
-        boardgame[0][2] = -1;
-        boardgame[1][0] = -1;
-        boardgame[1][1] = -1;
-        boardgame[1][2] = -1;
-        boardgame[2][0] = -1;
-        boardgame[2][1] = -1;
-        boardgame[2][2] = -1;
-
-        // Her vil vi gerne kunne ændre værdierne inde i arrayet.. det er ikke gjort endnu,
-        // men vi har forsøgt at gøre forskel på om det er player et eller player to
-        for (int r = 0; r < boardgame.length; r++ ) {
-            for (int c = 0; c < boardgame[0].length; c++) {
-                if(playerturn == 0 )
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-
-        }
-        return -1;
-    }
-}
-
-         */

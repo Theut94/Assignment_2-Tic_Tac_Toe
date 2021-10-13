@@ -84,22 +84,16 @@ public class TicTacViewController implements Initializable {
                 button.setText(x);
                 game.setGrid(c, r, x);
                 if (game.isGameOver()) {
+
                     int winner = game.getWinner();
                     displayWinner(winner);
-                    if (winner == 0) {
-                        scoreModel.setNextWinner("X");
-                    }
-                    else if (winner == 1) {
-                        scoreModel.setNextWinner("O");
-                    }
-                    else {
-                        scoreModel.setNextWinner("draw");
+                    scoreModel.setNextWinner(winner+"");
                     }
                 } else {
                     setPlayer();
                 }
                 updateGameBoardButtons();
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,13 +157,13 @@ public class TicTacViewController implements Initializable {
     private void displayWinner(int winner) {
         String message;
         // ? er en conditional operator ligesom en if sætning, hvor : står for "else"
-        String winnerText = winner == 0 ? "X": "O";
+
         if (winner == -1) {
             message = "It's a draw :-(";
         }
         else
         {
-            message = "Player " + winnerText + " wins!!!";
+            message = "Player " + winner + " wins!!!";
         }
         lblPlayer.setText(message);
     }
