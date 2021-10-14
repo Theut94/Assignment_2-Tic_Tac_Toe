@@ -15,6 +15,7 @@ public class ScoreModel {
         return winners;
     }
 
+    // Method that sets the winner on our scoreboard
     public void setNextWinner(String winner)
     {
         if(winner.equals("-1"))

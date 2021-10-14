@@ -4,15 +4,17 @@ package tictactoe.bll;
  * The GameBoardTwoPlayer class is the mandatory implementation for the TicTacToe assignment.
  * It is used for games where there are two human players.
  */
+// Here we implement our interface, which is IGameModel
 public class GameBoardTwoPlayer implements IGameModel
 {
-
+//Player data
     public int playerturn = 0;
 
+//Gameboard data
     private final String[][] grid;
 
 
-
+// Her definerer vi vores grid til at være [3][3], da TicTacToe Gameboard er 3x3.
     protected GameBoardTwoPlayer()
     {
         grid = new String[3][3];
@@ -26,6 +28,7 @@ public class GameBoardTwoPlayer implements IGameModel
      *
      * @return int Id of the next player.
      */
+    //Method that swaps between the two players
     @Override
     public int getNextPlayer()
     {
@@ -33,7 +36,7 @@ public class GameBoardTwoPlayer implements IGameModel
 
     }
 
-    // Funktion til at reset spillet
+    // Method to reset the gameBoard
     public void resetBoard() {
         for (int i = 0; i < grid.length;  i++) {
             for (int j = 0; j < grid.length; j++){
@@ -42,7 +45,7 @@ public class GameBoardTwoPlayer implements IGameModel
         }
 
     }
-
+// Metode vi bruger til at sætte vores grid, col & row er int, da parameteren er et heltal. Resultatet er en String.
     public void setGrid(int col, int row, String text){
         grid[col][row] = text;
     }
@@ -56,11 +59,10 @@ public class GameBoardTwoPlayer implements IGameModel
      * @return true if the move is accepted, otherwise false. If gameOver ==
      * true this method will always return false.
      */
+
     @Override
     public boolean play(int col, int row) {
         return (!isGameOver() && grid[col][row].matches(""));
-
-
     }
 
     /**
@@ -69,7 +71,10 @@ public class GameBoardTwoPlayer implements IGameModel
      *
      * @return true if the game is over, else it will return false.
      */
+
+
     @Override
+    // Method to check wether the game is over or not
     public boolean isGameOver() {
         boolean isGameOver = true;
         for (int i = 0; i < grid.length; i++) {
@@ -91,7 +96,7 @@ public class GameBoardTwoPlayer implements IGameModel
     }
 
 
-
+    // Method that checks if player X has won by checking every possible way X can win, if matches returns true
     private boolean checkXWin() {
         return (grid[0][0].matches("[X]") && grid[1][0].matches("[X]") && grid[2][0].matches("[X]") ||
                 grid[0][1].matches("[X]") && grid[1][1].matches("[X]") && grid[2][1].matches("[X]") ||
@@ -105,6 +110,7 @@ public class GameBoardTwoPlayer implements IGameModel
                 grid[0][2].matches("[X]") && grid[1][1].matches("[X]") && grid[2][0].matches("[X]"));
     }
 
+    // Method that checks if player O has won by checking every possible way X can win, if matches returns true
     private boolean checkOWin() {
         return (grid[0][0].matches("[O]") && grid[1][0].matches("[O]") && grid[2][0].matches("[O]") ||
                 grid[0][1].matches("[O]") && grid[1][1].matches("[O]") && grid[2][1].matches("[O]") ||
@@ -118,9 +124,9 @@ public class GameBoardTwoPlayer implements IGameModel
                 grid[0][2].matches("[O]") && grid[1][1].matches("[O]") && grid[2][0].matches("[O]"));
     }
 
-    /**
-     * This method is used to change player turn.
-     */
+
+     // This method is used to change player turn.
+
     public void incrementPlayer() {
         if (playerturn == 0) {
             playerturn++;
@@ -131,7 +137,8 @@ public class GameBoardTwoPlayer implements IGameModel
     }
     /**
      * Gets the id of the winner, -1 if its a draw.
-     *
+     * Return 1 if X wins
+     * Return 0 if O wins
      * @return int id of winner, or -1 if draw.
      */
     @Override
@@ -151,9 +158,9 @@ public class GameBoardTwoPlayer implements IGameModel
 
     }
 
-    /**
-     * Resets the game to a new game state.
-     */
+
+     // Resets the game to a new game state.
+
     @Override
     public void newGame()
     {

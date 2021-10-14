@@ -156,7 +156,7 @@ public class TicTacViewController implements Initializable {
      */
     private void displayWinner(int winner) {
         String message;
-        // ? er en conditional operator ligesom en if sætning, hvor : står for "else"
+        // "?" er en conditional operator ligesom en if sætning, hvor : står for "else"
 
         if (winner == -1) {
             message = "It's a draw :-(";
